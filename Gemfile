@@ -20,6 +20,7 @@ gem "sprockets", ">= 3.0.0"
 gem "suspenders"
 gem "title"
 gem "uglifier"
+gem "bcrypt"
 
 group :development do
   gem "listen"
@@ -60,5 +61,5 @@ end
 
 gem 'high_voltage'
 gem 'bourbon', '~> 5.0.0.beta.7'
-gem 'neat', '~> 2.0.0.beta.1'
+gem 'neat', '1.8.0'
 gem 'refills', group: [:development, :test]
