@@ -1,0 +1,5 @@
+.content {
+  @include outer-container(90%);
+  @include pad(30px default default default);
+}
+
