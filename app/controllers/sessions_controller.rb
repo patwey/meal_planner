@@ -15,6 +15,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    sign_out
+    redirect_to sign_in_path, notice: 'Signed out successfully'
+  end
+
   private
 
   def user_params
