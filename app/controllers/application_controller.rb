@@ -18,4 +18,14 @@ class ApplicationController < ActionController::Base
     redirect_back fallback_location: root_path,
                   alert: "Oops, you're not authorized to do that"
   end
+
+  def verify_guest
+    return unless signed_in?
+
+    sign_out = view_context.link_to 'Sign out', sign_out_path
+    redirect_to(
+      current_user,
+      notice: "Not you? #{sign_out} to create or access another account"
+    )
+  end
 end

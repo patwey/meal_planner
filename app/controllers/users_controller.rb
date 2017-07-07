@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user, only: [:new, :create]
 
+  before_action :verify_guest, only: [:new]
+
   def show
     @user = User.find(params[:id])
     authorize @user
