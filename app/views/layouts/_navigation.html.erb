@@ -35,7 +35,12 @@
         </li>
         <li class="nav-link">
           <% if signed_in? %>
-            <%= link_to 'Sign out', sign_out_path %>
+            <li class="nav-link more"><a href="javascript:void(0)"><%= current_user.name %></a>
+              <ul class="submenu">
+                <li><%= link_to 'My Profile', user_path(current_user) %></li>
+                <li><%= link_to 'Sign out', sign_out_path %></li>
+              </ul>
+            </li>
           <% else %>
             <%= link_to 'Sign in', sign_in_path %>
           <% end %>

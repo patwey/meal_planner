@@ -21,6 +21,7 @@ gem "suspenders"
 gem "title"
 gem "uglifier"
 gem "bcrypt"
+gem "pundit"
 
 group :development do
   gem "listen"

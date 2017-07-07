@@ -11,6 +11,6 @@ RSpec.describe 'User signs in' do
     click_button 'Sign in'
 
     expect(page).to have_content 'Sign out'
-    expect(page).to have_content 'Welcome back!'
+    expect(page).to have_content user.name
   end
 end
