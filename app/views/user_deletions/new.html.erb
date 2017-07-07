@@ -1,0 +1,8 @@
+<h1>Are you sure you want to delete your account?</h1>
+
+<%= simple_form_for @user, method: :delete do |f| %>
+  <%= f.submit "Yes, delete my account", class: 'delete-account-btn' %>
+<% end %>
+
+<hr>
+<%= link_to 'Back', :back %>

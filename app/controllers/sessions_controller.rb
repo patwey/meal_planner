@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
       sign_in @user
       redirect_to @user, notice: "Welcome back #{@user.name}!"
     else
-      render :new, error: 'Invalid credentials. Please try again.'
+      flash[:error] = 'Invalid credentials. Please try again.'
+      render :new
     end
   end
 

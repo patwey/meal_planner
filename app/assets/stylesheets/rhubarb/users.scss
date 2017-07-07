@@ -1,0 +1,18 @@
+.user-information {
+  .attribute {
+    @include row();
+    @include pad(10px 0 10px 0);
+  }
+}
+
+.user-options {
+  @include row();
+
+  .standard-options {
+    @include span-columns(10);
+  }
+
+  .destructive-options {
+    @include span-columns(2);
+  }
+}
