@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(session_params[:email])
     if @user && @user.authenticate(session_params[:password])
       sign_in @user
-      redirect_back fallback_location: @user, notice: 'Welcome back!'
+      redirect_to @user, notice: "Welcome back #{@user.name}!"
     else
       render :new, error: 'Invalid credentials. Please try again.'
     end
