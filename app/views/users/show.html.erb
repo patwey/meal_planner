@@ -1,0 +1,23 @@
+<h1>My Profile</h1>
+
+<div>
+  <%= label_tag 'name' %><%= @user.name %>
+</div>
+
+<br>
+
+<div>
+  <%= label_tag 'email' %><%= @user.email %>
+</div>
+
+<hr>
+
+<% if policy(@user).edit? %>
+  <div>
+    <%= link_to 'Edit', edit_user_path(@user) %>
+  </div>
+<% end %>
+
+<div>
+  <%= link_to 'Back', :back %>
+</div>

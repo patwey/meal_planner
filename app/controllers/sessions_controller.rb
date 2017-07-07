@@ -1,28 +1,27 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user, only: [:new, :create]
+  skip_after_action :verify_authorized
 
   def new; end
 
   def create
-    @user = User.find_by_email(user_params[:email])
-    if @user && @user.authenticate(user_params[:password])
+    @user = User.find_by_email(session_params[:email])
+    if @user && @user.authenticate(session_params[:password])
       sign_in @user
-      flash[:notice] = 'Welcome back!'
-      redirect_to @user
+      redirect_to @user, notice: 'Welcome back!'
     else
-      flash.now[:alert] = 'Invalid credentials. Please try again.'
-      render :new
+      render :new, error: 'Invalid credentials. Please try again.'
     end
   end
 
   def destroy
     sign_out
-    redirect_to sign_in_path, notice: 'Signed out successfully'
+    redirect_to sign_in_path, notice: "You've been successfully signed out"
   end
 
   private
 
-  def user_params
+  def session_params
     params.require(:user).permit([:email, :password])
   end
 end
