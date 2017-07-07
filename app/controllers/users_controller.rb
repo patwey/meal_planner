@@ -26,7 +26,8 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user, notice: 'Welcome to Rhubarb!'
     else
-      render 'new', error: 'There was a problem creating your account'
+      flash[:error] = 'There was a problem creating your account'
+      render 'new'
     end
   end
 
@@ -37,8 +38,19 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       redirect_to @user, notice: 'Your profile has been updated'
     else
-      render :edit, error: 'There was a problem updating your profile'
+      flash[:error] = 'There was a problem updating your profile'
+      render :edit
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    authorize @user
+    @user.destroy
+    sign_out
+
+    redirect_to sign_up_path,
+                notice: 'Your account has been successfully deleted'
   end
 
   private
