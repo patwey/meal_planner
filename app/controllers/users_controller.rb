@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user, only: [:new, :create]
+  skip_before_action :authenticate_user, only: %i[new create]
 
   before_action :verify_guest, only: [:new]
 
@@ -56,6 +58,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit([:name, :email, :password])
+    params.require(:user).permit(%i[name email password])
   end
 end

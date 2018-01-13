@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'welcome#index'
 
@@ -7,5 +9,5 @@ Rails.application.routes.draw do
 
   get '/sign_up', to: 'users#new'
   resources :users, except: [:new]
-  resources :user_deletions, only: [:new, :create]
+  resources :user_deletions, only: %i[new create]
 end

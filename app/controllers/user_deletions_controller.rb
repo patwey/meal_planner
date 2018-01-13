@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UserDeletionsController < ApplicationController
-  skip_after_action :verify_authorized, only: [:new, :create]
+  skip_after_action :verify_authorized, only: %i[new create]
 
   def new
     @user = User.find(params[:id])
