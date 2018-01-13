@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
-  skip_before_action :authenticate_user, only: [:new, :create]
+  skip_before_action :authenticate_user, only: %i[new create]
   skip_after_action :verify_authorized
 
   before_action :verify_guest, only: [:new]
@@ -8,7 +10,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by_email(session_params[:email])
-    if @user && @user.authenticate(session_params[:password])
+    if @user&.authenticate(session_params[:password])
       sign_in @user
       redirect_to @user, notice: "Welcome back #{@user.name}!"
     else
@@ -25,6 +27,6 @@ class SessionsController < ApplicationController
   private
 
   def session_params
-    params.require(:user).permit([:email, :password])
+    params.require(:user).permit(%i[email password])
   end
 end
